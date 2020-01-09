@@ -16,35 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 using System.IO;
 
 namespace s2industries.ZUGFeRD
 {
     public abstract class IInvoiceDescriptorReader
     {
-        public abstract InvoiceDescriptor Load(Stream stream);        
+        public abstract InvoiceDescriptor Load(Stream stream);      
+        
         public abstract bool IsReadableByThisReaderVersion(Stream stream);
-
 
         public InvoiceDescriptor Load(string filename)
         {
-            if (!System.IO.File.Exists(filename))
+            if (!File.Exists(filename))
             {
                 throw new FileNotFoundException();
             }
 
             return Load(new FileStream(filename, FileMode.Open, FileAccess.Read));
-        } // !Load()
-
+        } 
 
         public bool IsReadableByThisReaderVersion(string filename)
         {
-            if (!System.IO.File.Exists(filename))
+            if (!File.Exists(filename))
             {
                 throw new FileNotFoundException();
             }
 
             return IsReadableByThisReaderVersion(new FileStream(filename, FileMode.Open, FileAccess.Read));
-        } // !IsReadableByThisReaderVersion()
+        } 
     }
 }

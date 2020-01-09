@@ -16,11 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
+// ReSharper disable InconsistentNaming
 namespace s2industries.ZUGFeRD
 {
     /// <summary>
@@ -68,7 +65,7 @@ namespace s2industries.ZUGFeRD
         public GlobalID()
         {
             this.ID = "";
-            this.SchemeID = GlobalID.SchemeID_Unknown;
+            this.SchemeID = SchemeID_Unknown;
         } // !GlobalID()
 
         public GlobalID(string schemeID, string ID)

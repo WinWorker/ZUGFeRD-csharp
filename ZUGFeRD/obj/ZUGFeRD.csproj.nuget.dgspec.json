@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\develop\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj": {}
+    "M:\\Github\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj": {}
   },
   "projects": {
-    "E:\\develop\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj": {
+    "M:\\Github\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj": {
       "version": "2.9.0",
       "restore": {
-        "projectUniqueName": "E:\\develop\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj",
+        "projectUniqueName": "M:\\Github\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj",
         "projectName": "s2industries.ZUGFeRD",
-        "projectPath": "E:\\develop\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj",
-        "packagesPath": "C:\\Users\\stephan\\.nuget\\packages\\",
-        "outputPath": "E:\\develop\\ZUGFeRD-csharp\\ZUGFeRD\\obj\\",
+        "projectPath": "M:\\Github\\ZUGFeRD-csharp\\ZUGFeRD\\ZUGFeRD.csproj",
+        "packagesPath": "C:\\Users\\dpuetzer.GMBH\\.nuget\\packages\\",
+        "outputPath": "M:\\Github\\ZUGFeRD-csharp\\ZUGFeRD\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\stephan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dpuetzer.GMBH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +25,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\stephan\\Dropbox\\Configuration\\NugetFeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,7 +58,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100-preview3-014645\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

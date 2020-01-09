@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace s2industries.ZUGFeRD
 {
     public class AssociatedDocument
     {
         public List<Note> Notes { get; set; } = new List<Note>();
+        // ReSharper disable once InconsistentNaming
         public int? LineID { get; set; }
 
         public AssociatedDocument()
@@ -16,10 +13,9 @@ namespace s2industries.ZUGFeRD
 
         }
 
-
-        public AssociatedDocument(int? lineID)
+        public AssociatedDocument(int? lineId)
         {
-            this.LineID = lineID;
+            this.LineID = lineId;
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace s2industries.ZUGFeRD
 {
@@ -19,11 +17,11 @@ namespace s2industries.ZUGFeRD
         {
             List<string> output = validate(descriptor);
 
-            System.IO.File.WriteAllText("e:\\temp.txt", string.Join("\n", output));
+            File.WriteAllText("e:\\temp.txt", string.Join("\n", output));
 
             foreach(string line in output)
             {
-                System.Console.WriteLine(line);
+                Console.WriteLine(line);
             }
         } // !validateAndPrint()
 
@@ -39,7 +37,7 @@ namespace s2industries.ZUGFeRD
 
             // line item summation
             retval.Add("Validating invoice monetary summation");
-            retval.Add(String.Format("Starting recalculating line total from {0} items...", descriptor.TradeLineItems.Count));
+            retval.Add(string.Format("Starting recalculating line total from {0} items...", descriptor.TradeLineItems.Count));
             int lineCounter = 0;
 
             decimal lineTotal = 0m;
@@ -65,7 +63,7 @@ namespace s2industries.ZUGFeRD
                 retval.Add(String.Format("Current monetarySummation.lineTotal = {0:0.0000} EUR(the sum of all line totals)", lineTotal));
                 */
 
-                retval.Add(String.Format("{0};{1};{2}", ++lineCounter, item.Name, _total));
+                retval.Add(string.Format("{0};{1};{2}", ++lineCounter, item.Name, _total));
             }
 
             retval.Add("==> DONE!");
@@ -75,7 +73,7 @@ namespace s2industries.ZUGFeRD
             decimal allowanceTotal = 0.0m;
             foreach (TradeAllowanceCharge charge in descriptor.TradeAllowanceCharges)
             {
-                retval.Add(String.Format("==> added {0:0.00} to {1:0.00}%", -charge.Amount, charge.Tax.Percent));
+                retval.Add(string.Format("==> added {0:0.00} to {1:0.00}%", -charge.Amount, charge.Tax.Percent));
 
                 if (!lineTotalPerTax.ContainsKey(charge.Tax.Percent))
                 {
@@ -89,23 +87,23 @@ namespace s2industries.ZUGFeRD
             // TODO
 
             // TODO ausgeben: Recalculating tax basis for tax percentages: [Key{percentage=7.00, code=[VAT] Value added tax, category=[S] Standard rate}, Key{percentage=19.00, code=[VAT] Value added tax, category=[S] Standard rate}]
-            retval.Add(String.Format("Recalculated tax basis = {0:0.0000}", lineTotal - allowanceTotal));
+            retval.Add(string.Format("Recalculated tax basis = {0:0.0000}", lineTotal - allowanceTotal));
             retval.Add("Calculating tax total...");
 
             decimal taxTotal = 0.0m;
             foreach (KeyValuePair<decimal, decimal> kv in lineTotalPerTax)
             {
-                decimal _taxTotal = Decimal.Divide(Decimal.Multiply(kv.Value, kv.Key), 100.0m);
+                decimal _taxTotal = decimal.Divide(decimal.Multiply(kv.Value, kv.Key), 100.0m);
                 taxTotal += _taxTotal;
-                retval.Add(String.Format("===> {0:0.0000} x {1:0.00}% = {2:0.00}", kv.Value, kv.Key, _taxTotal));
+                retval.Add(string.Format("===> {0:0.0000} x {1:0.00}% = {2:0.00}", kv.Value, kv.Key, _taxTotal));
             }
 
             decimal grandTotal = lineTotal - allowanceTotal + taxTotal;
 
-            retval.Add(String.Format("Recalculated tax total = {0:0.00}", taxTotal));
-            retval.Add(String.Format("Recalculated grand total = {0:0.0000} EUR(tax basis total + tax total)", grandTotal));
+            retval.Add(string.Format("Recalculated tax total = {0:0.00}", taxTotal));
+            retval.Add(string.Format("Recalculated grand total = {0:0.0000} EUR(tax basis total + tax total)", grandTotal));
             retval.Add("Recalculating invoice monetary summation DONE!");
-            retval.Add(String.Format("==> result: MonetarySummation[lineTotal = {0:0.0000} EUR, chargeTotal = {1:0.0000} EUR, allowanceTotal = {2:0.0000} EUR, taxBasisTotal = {3:0.0000} EUR, taxTotal = {4:0.0000} EUR, grandTotal = {5:0.0000} EUR, totalPrepaid = {6:0.0000} EUR, duePayable = {7:0.0000} EUR]",
+            retval.Add(string.Format("==> result: MonetarySummation[lineTotal = {0:0.0000} EUR, chargeTotal = {1:0.0000} EUR, allowanceTotal = {2:0.0000} EUR, taxBasisTotal = {3:0.0000} EUR, taxTotal = {4:0.0000} EUR, grandTotal = {5:0.0000} EUR, totalPrepaid = {6:0.0000} EUR, duePayable = {7:0.0000} EUR]",
                                      lineTotal,
                                      0.0m, // chargeTotal
                                      allowanceTotal,
@@ -131,29 +129,29 @@ namespace s2industries.ZUGFeRD
 
             if (Math.Abs(taxTotal - descriptor.TaxTotalAmount) < 0.01m)
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.taxTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", taxTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.taxTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", taxTotal));
             }
             else
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.taxTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", taxTotal, descriptor.TaxTotalAmount));
+                retval.Add(string.Format("trade.settlement.monetarySummation.taxTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", taxTotal, descriptor.TaxTotalAmount));
             }
 
             if (Math.Abs(lineTotal - descriptor.LineTotalAmount) < 0.01m)
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.lineTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", lineTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.lineTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", lineTotal));
             }
             else
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.lineTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", lineTotal, descriptor.LineTotalAmount));
+                retval.Add(string.Format("trade.settlement.monetarySummation.lineTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", lineTotal, descriptor.LineTotalAmount));
             }
 
             if (Math.Abs(grandTotal - descriptor.GrandTotalAmount) < 0.01m)
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.grandTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", grandTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.grandTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", grandTotal));
             }
             else
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.grandTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", grandTotal, descriptor.GrandTotalAmount));
+                retval.Add(string.Format("trade.settlement.monetarySummation.grandTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", grandTotal, descriptor.GrandTotalAmount));
             }
 
             /**
@@ -161,20 +159,20 @@ namespace s2industries.ZUGFeRD
              */
             if (Math.Abs(_taxBasisTotal - _taxBasisTotal) < 0.01m)
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.taxBasisTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", _taxBasisTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.taxBasisTotal Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", _taxBasisTotal));
             }
             else
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.taxBasisTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", _taxBasisTotal, _taxBasisTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.taxBasisTotal Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", _taxBasisTotal, _taxBasisTotal));
             }
 
             if (Math.Abs(allowanceTotal - _allowanceTotal) < 0.01m)
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.allowanceTotal  Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", _allowanceTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.allowanceTotal  Message: Berechneter Wert ist wie vorhanden:[{0:0.0000}]", _allowanceTotal));
             }
             else
             {
-                retval.Add(String.Format("trade.settlement.monetarySummation.allowanceTotal  Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", allowanceTotal, _allowanceTotal));
+                retval.Add(string.Format("trade.settlement.monetarySummation.allowanceTotal  Message: Berechneter Wert ist[{0:0.0000}] aber tatsächliche vorhander Wert ist[{1:0.0000}] | Actual value: {1:0.0000})", allowanceTotal, _allowanceTotal));
             }
 
 

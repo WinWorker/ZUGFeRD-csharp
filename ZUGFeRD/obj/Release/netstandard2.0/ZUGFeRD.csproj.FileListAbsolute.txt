@@ -6,3 +6,11 @@ E:\develop\ZUGFeRD-csharp\ZUGFeRD\bin\Release\netstandard2.0\s2industries.ZUGFeR
 E:\develop\ZUGFeRD-csharp\ZUGFeRD\bin\Release\netstandard2.0\s2industries.ZUGFeRD.pdb
 E:\develop\ZUGFeRD-csharp\ZUGFeRD\obj\Release\netstandard2.0\s2industries.ZUGFeRD.dll
 E:\develop\ZUGFeRD-csharp\ZUGFeRD\obj\Release\netstandard2.0\s2industries.ZUGFeRD.pdb
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\bin\Release\netstandard2.0\s2industries.ZUGFeRD.deps.json
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\bin\Release\netstandard2.0\s2industries.ZUGFeRD.dll
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\bin\Release\netstandard2.0\s2industries.ZUGFeRD.pdb
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\obj\Release\netstandard2.0\ZUGFeRD.AssemblyInfoInputs.cache
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\obj\Release\netstandard2.0\ZUGFeRD.AssemblyInfo.cs
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\obj\Release\netstandard2.0\s2industries.ZUGFeRD.dll
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\obj\Release\netstandard2.0\s2industries.ZUGFeRD.pdb
+C:\Users\dpuetzer.GMBH\Desktop\ZUGFeRD-csharp-master\ZUGFeRD\obj\Release\netstandard2.0\ZUGFeRD.csprojAssemblyReference.cache

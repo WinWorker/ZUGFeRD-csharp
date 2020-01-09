@@ -16,16 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-
+using System.Linq;
 
 namespace s2industries.ZUGFeRD
 {
-    public class InvoiceDescriptor
+    public class InvoiceDescriptor : IInvoiceDescriptorReader
     {
         public string InvoiceNo { get; set; }
         public DateTime? InvoiceDate { get; set; }
@@ -72,8 +71,6 @@ namespace s2industries.ZUGFeRD
         public InvoiceType Type { get; set; }
         public string ReferenceOrderNo { get; set; }
         public List<TradeLineItem> TradeLineItems { get; set; }
-
-
         public decimal LineTotalAmount { get; set; }
         public decimal ChargeTotalAmount { get; set; }
         public decimal AllowanceTotalAmount { get; set; }
@@ -89,8 +86,6 @@ namespace s2industries.ZUGFeRD
         public List<BankAccount> CreditorBankAccounts { get; set; }
         public List<BankAccount> DebitorBankAccounts { get; set; }
         public PaymentMeans PaymentMeans { get; set; }
-
-
         internal InvoiceDescriptor()
         {
             this.InvoiceNoAsReference = "";
@@ -126,7 +121,7 @@ namespace s2industries.ZUGFeRD
         }
 
 
-        public static InvoiceDescriptor Load(Stream stream)
+        public override InvoiceDescriptor Load(Stream stream)
         {
             IInvoiceDescriptorReader reader = new InvoiceDescriptor1Reader();
             if (reader.IsReadableByThisReaderVersion(stream))
@@ -140,11 +135,19 @@ namespace s2industries.ZUGFeRD
                 return reader.Load(stream);
             }
 
+            reader = new InvoiceDescriptorXRechnungReader();
+            if (reader.IsReadableByThisReaderVersion(stream))
+            {
+                return reader.Load(stream);
+            }
+
             return null;
-        } // !Load()
+        }
+
+        public override bool IsReadableByThisReaderVersion(Stream stream) => false;
 
 
-        public static InvoiceDescriptor Load(string filename)
+        public new static InvoiceDescriptor Load(string filename)
         {
             IInvoiceDescriptorReader reader = new InvoiceDescriptor1Reader();
             if (reader.IsReadableByThisReaderVersion(filename))
@@ -158,8 +161,14 @@ namespace s2industries.ZUGFeRD
                 return reader.Load(filename);
             }
 
+            reader = new InvoiceDescriptorXRechnungReader();
+            if (reader.IsReadableByThisReaderVersion(filename))
+            {
+                return reader.Load(filename);
+            }
+
             return null;
-        } // !Load()
+        } 
 
 
         public static InvoiceDescriptor CreateInvoice(string invoiceNo, DateTime invoiceDate, CurrencyCodes currency, string invoiceNoAsReference = "")
@@ -189,7 +198,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetBuyer(string name, string postcode, string city, string street, CountryCodes country, string id, GlobalID globalID = null, string receiver = "")
         {
-            this.Buyer = new Party()
+            this.Buyer = new Party
             {
                 ID = id,
                 Name = name,
@@ -205,7 +214,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetSeller(string name, string postcode, string city, string street, CountryCodes country, string id, GlobalID globalID = null)
         {
-            this.Seller = new Party()
+            this.Seller = new Party
             {
                 ID = id,
                 Name = name,
@@ -220,7 +229,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetSellerContact(string name = "", string orgunit = "", string emailAddress = "", string phoneno = "", string faxno = "")
         {
-            this.SellerContact = new Contact()
+            this.SellerContact = new Contact
             {
                 Name = name,
                 OrgUnit = orgunit,
@@ -233,7 +242,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetBuyerContact(string name, string orgunit = "", string emailAddress = "", string phoneno = "", string faxno = "")
         {
-            this.BuyerContact = new Contact()
+            this.BuyerContact = new Contact
             {
                 Name = name,
                 OrgUnit = orgunit,
@@ -246,7 +255,7 @@ namespace s2industries.ZUGFeRD
 
         public void AddBuyerTaxRegistration(string no, TaxRegistrationSchemeID schemeID)
         {
-            this.BuyerTaxRegistration.Add(new TaxRegistration()
+            this.BuyerTaxRegistration.Add(new TaxRegistration
             {
                 No = no,
                 SchemeID = schemeID
@@ -256,7 +265,7 @@ namespace s2industries.ZUGFeRD
 
         public void AddSellerTaxRegistration(string no, TaxRegistrationSchemeID schemeID)
         {
-            this.SellerTaxRegistration.Add(new TaxRegistration()
+            this.SellerTaxRegistration.Add(new TaxRegistration
             {
                 No = no,
                 SchemeID = schemeID
@@ -274,7 +283,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetDeliveryNoteReferenceDocument(string deliveryNoteNo, DateTime deliveryNoteDate)
         {
-            this.DeliveryNoteReferencedDocument = new DeliveryNoteReferencedDocument()
+            this.DeliveryNoteReferencedDocument = new DeliveryNoteReferencedDocument
             {
                 ID = deliveryNoteNo,
                 IssueDateTime = deliveryNoteDate
@@ -284,11 +293,11 @@ namespace s2industries.ZUGFeRD
 
         public void AddLogisticsServiceCharge(decimal amount, string description, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent)
         {
-            this.ServiceCharges.Add(new ServiceCharge()
+            this.ServiceCharges.Add(new ServiceCharge
             {
                 Description = description,
                 Amount = amount,
-                Tax = new Tax()
+                Tax = new Tax
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
@@ -300,7 +309,7 @@ namespace s2industries.ZUGFeRD
 
         public void AddTradeAllowanceCharge(bool isDiscount, decimal basisAmount, CurrencyCodes currency, decimal actualAmount, string reason, TaxTypes taxTypeCode, TaxCategoryCodes taxCategoryCode, decimal taxPercent)
         {
-            this.TradeAllowanceCharges.Add(new TradeAllowanceCharge()
+            this.TradeAllowanceCharges.Add(new TradeAllowanceCharge
             {
                 ChargeIndicator = !isDiscount,
                 Reason = reason,
@@ -308,7 +317,7 @@ namespace s2industries.ZUGFeRD
                 ActualAmount = actualAmount,
                 Currency = currency,
                 Amount = actualAmount,
-                Tax = new Tax()
+                Tax = new Tax
                 {
                     CategoryCode = taxCategoryCode,
                     TypeCode = taxTypeCode,
@@ -320,7 +329,7 @@ namespace s2industries.ZUGFeRD
 
         public void SetTradePaymentTerms(string description, DateTime dueDate)
         {
-            this.PaymentTerms = new PaymentTerms()
+            this.PaymentTerms = new PaymentTerms
             {
                 Description = description,
                 DueDate = dueDate
@@ -356,7 +365,7 @@ namespace s2industries.ZUGFeRD
 
         public void AddApplicableTradeTax(decimal basisAmount, decimal percent, TaxTypes typeCode, TaxCategoryCodes? categoryCode = null, decimal allowanceChargeBasisAmount = 0)
         {
-            Tax tax = new Tax()
+            Tax tax = new Tax
             {
                 BasisAmount = basisAmount,
                 Percent = percent,
@@ -380,10 +389,10 @@ namespace s2industries.ZUGFeRD
         /// This allows easy further processing of the stream.
         /// </summary>
         /// <param name="stream"></param>
-        public void Save(Stream stream, ZUGFeRDVersion version = ZUGFeRDVersion.Version1)
+        public void Save(Stream stream, ZugFeRDVersion version = ZugFeRDVersion.Version1)
         {
             IInvoiceDescriptorWriter writer = null;
-            if (version == ZUGFeRDVersion.Version1)
+            if (version == ZugFeRDVersion.Version1)
             {
                 writer = new InvoiceDescriptor1Writer();
             }
@@ -396,10 +405,10 @@ namespace s2industries.ZUGFeRD
         } // !Save()
 
 
-        public void Save(string filename, ZUGFeRDVersion version = ZUGFeRDVersion.Version1)
+        public void Save(string filename, ZugFeRDVersion version = ZugFeRDVersion.Version1)
         {
             IInvoiceDescriptorWriter writer = null;
-            if (version == ZUGFeRDVersion.Version1)
+            if (version == ZugFeRDVersion.Version1)
             {
                 writer = new InvoiceDescriptor1Writer();
             }
@@ -413,9 +422,9 @@ namespace s2industries.ZUGFeRD
 
         public void addTradeLineCommentItem(string comment)
         {
-            TradeLineItem item = new TradeLineItem()
+            TradeLineItem item = new TradeLineItem
             {
-                AssociatedDocument = new ZUGFeRD.AssociatedDocument(),
+                AssociatedDocument = new AssociatedDocument(),
                 GrossUnitPrice = 0m,
                 NetUnitPrice= 0m,
                 BilledQuantity = 0m
@@ -445,19 +454,19 @@ namespace s2industries.ZUGFeRD
                                      string description = null,
                                      QuantityCodes unitCode = QuantityCodes.Unknown,
                                      decimal? unitQuantity = null,
-                                     decimal grossUnitPrice = Decimal.MinValue,
-                                     decimal netUnitPrice = Decimal.MinValue,
-                                     decimal billedQuantity = Decimal.MinValue,
+                                     decimal grossUnitPrice = decimal.MinValue,
+                                     decimal netUnitPrice = decimal.MinValue,
+                                     decimal billedQuantity = decimal.MinValue,
                                      TaxTypes taxType = TaxTypes.Unknown,
                                      TaxCategoryCodes categoryCode = TaxCategoryCodes.Unknown,
-                                     decimal taxPercent = Decimal.MinValue,
+                                     decimal taxPercent = decimal.MinValue,
                                      string comment = null,
                                      GlobalID id = null,
                                      string sellerAssignedID = "", string buyerAssignedID = "",
                                      string deliveryNoteID = "", DateTime? deliveryNoteDate = null,
                                      string buyerOrderID = "", DateTime? buyerOrderDate = null)
         {
-            TradeLineItem newItem = new TradeLineItem()
+            TradeLineItem newItem = new TradeLineItem
             {
                 GlobalID = id,
                 SellerAssignedID = sellerAssignedID,
@@ -490,18 +499,18 @@ namespace s2industries.ZUGFeRD
                 _lineID = 1;
             }
 
-            newItem.AssociatedDocument = new ZUGFeRD.AssociatedDocument(_lineID);
-            if (!String.IsNullOrEmpty(comment))
+            newItem.AssociatedDocument = new AssociatedDocument(_lineID);
+            if (!string.IsNullOrEmpty(comment))
             {
                 newItem.AssociatedDocument.Notes.Add(new Note(comment, SubjectCodes.Unknown, ContentCodes.Unknown));
             }
 
-            if (!String.IsNullOrEmpty(deliveryNoteID) || deliveryNoteDate.HasValue)
+            if (!string.IsNullOrEmpty(deliveryNoteID) || deliveryNoteDate.HasValue)
             {
                 newItem.setDeliveryNoteReferencedDocument(deliveryNoteID, deliveryNoteDate);
             }
 
-            if (!String.IsNullOrEmpty(buyerOrderID) || buyerOrderDate.HasValue)
+            if (!string.IsNullOrEmpty(buyerOrderID) || buyerOrderDate.HasValue)
             {
                 newItem.setOrderReferencedDocument(buyerOrderID, buyerOrderDate);
             }
@@ -525,7 +534,7 @@ namespace s2industries.ZUGFeRD
 
         public void addCreditorFinancialAccount(string iban, string bic, string id = null, string bankleitzahl = null, string bankName = null, string name = null)
         {
-            this.CreditorBankAccounts.Add(new BankAccount()
+            this.CreditorBankAccounts.Add(new BankAccount
             {
                 ID = id,
                 IBAN = iban,
@@ -538,7 +547,7 @@ namespace s2industries.ZUGFeRD
 
         public void addDebitorFinancialAccount(string iban, string bic, string id = null, string bankleitzahl = null, string bankName = null)
         {
-            this.DebitorBankAccounts.Add(new BankAccount()
+            this.DebitorBankAccounts.Add(new BankAccount
             {
                 ID = id,
                 IBAN = iban,

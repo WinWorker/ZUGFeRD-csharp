@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rsm:CrossIndustryDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rsm="urn:ferd:CrossIndustryDocument:invoice:1p0" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15">
+  <rsm:SpecifiedExchangedDocumentContext>
+    <ram:GuidelineSpecifiedDocumentContextParameter>
+      <ram:ID>urn:ferd:CrossIndustryDocument:invoice:1p0:basic</ram:ID>
+    </ram:GuidelineSpecifiedDocumentContextParameter>
+  </rsm:SpecifiedExchangedDocumentContext>
+  <rsm:HeaderExchangedDocument>
+    <ram:ID>2001101</ram:ID>
+    <ram:Name>Rechnung</ram:Name>
+    <ram:TypeCode>380</ram:TypeCode>
+    <ram:IssueDateTime>
+      <udt:DateTimeString format="102">20200106</udt:DateTimeString>
+    </ram:IssueDateTime>
+    <ram:IncludedNote>
+      <ram:Content>Bitte zahlen Sie sofort ohne Abzug.</ram:Content>
+    </ram:IncludedNote>
+  </rsm:HeaderExchangedDocument>
+  <rsm:SpecifiedSupplyChainTradeTransaction>
+    <ram:ApplicableSupplyChainTradeAgreement>
+      <ram:SellerTradeParty>
+        <ram:Name>Manfred G. Sonne</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>56789</ram:PostcodeCode>
+          <ram:LineOne>Akazienweg 56</ram:LineOne>
+          <ram:CityName>Bantem</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="FC">234567</ram:ID>
+        </ram:SpecifiedTaxRegistration>
+      </ram:SellerTradeParty>
+      <ram:BuyerTradeParty>
+        <ram:ID>10189</ram:ID>
+        <ram:Name>SANDER + PARTNER GMBH</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>47574</ram:PostcodeCode>
+          <ram:LineOne>Kalkarer Straße 240</ram:LineOne>
+          <ram:CityName>Goch</ram:CityName>
+          <ram:CountryID />
+        </ram:PostalTradeAddress>
+      </ram:BuyerTradeParty>
+    </ram:ApplicableSupplyChainTradeAgreement>
+    <ram:ApplicableSupplyChainTradeDelivery>
+      <ram:ActualDeliverySupplyChainEvent>
+        <ram:OccurrenceDateTime>
+          <udt:DateTimeString format="102">20200106</udt:DateTimeString>
+        </ram:OccurrenceDateTime>
+      </ram:ActualDeliverySupplyChainEvent>
+    </ram:ApplicableSupplyChainTradeDelivery>
+    <ram:ApplicableSupplyChainTradeSettlement>
+      <ram:PaymentReference>Rechnung 2001101</ram:PaymentReference>
+      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:ApplicableTradeTax>
+        <ram:CalculatedAmount currencyID="EUR">15.91</ram:CalculatedAmount>
+        <ram:TypeCode>VAT</ram:TypeCode>
+        <ram:BasisAmount currencyID="EUR">83.76</ram:BasisAmount>
+        <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+      </ram:ApplicableTradeTax>
+      <ram:SpecifiedTradeSettlementMonetarySummation>
+        <ram:LineTotalAmount currencyID="EUR">83.76</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
+        <ram:AllowanceTotalAmount currencyID="EUR">0.00</ram:AllowanceTotalAmount>
+        <ram:TaxBasisTotalAmount currencyID="EUR">83.76</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="EUR">15.91</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount currencyID="EUR">99.67</ram:GrandTotalAmount>
+        <ram:DuePayableAmount currencyID="EUR">99.67</ram:DuePayableAmount>
+      </ram:SpecifiedTradeSettlementMonetarySummation>
+    </ram:ApplicableSupplyChainTradeSettlement>
+  </rsm:SpecifiedSupplyChainTradeTransaction>
+</rsm:CrossIndustryDocument>

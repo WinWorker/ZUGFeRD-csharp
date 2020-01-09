@@ -16,17 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using System;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Text;
 
 namespace s2industries.ZUGFeRD
 {
     public abstract class IInvoiceDescriptorWriter
     {
         public abstract void Save(InvoiceDescriptor descriptor, Stream stream);
-
 
         public void Save(InvoiceDescriptor descriptor, string filename)
         {

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace s2industries.ZUGFeRD
+﻿namespace s2industries.ZUGFeRD
 {
-    public enum ZUGFeRDVersion
+    public enum ZugFeRDVersion
     {
         Version1 = 100,
-        Version2 = 200
+        Version2 = 200,
+        XRechnung = 250
     }
 }

@@ -16,10 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace s2industries.ZUGFeRD
 {
@@ -60,7 +59,7 @@ namespace s2industries.ZUGFeRD
 
         public void addTradeAllowanceCharge(bool isDiscount, CurrencyCodes currency, decimal basisAmount, decimal actualAmount, string reason)
         {
-            this.TradeAllowanceCharges.Add(new TradeAllowanceCharge()
+            this.TradeAllowanceCharges.Add(new TradeAllowanceCharge
             {
                 ChargeIndicator = !isDiscount,
                 Currency = currency,
@@ -73,7 +72,7 @@ namespace s2industries.ZUGFeRD
 
         public void setDeliveryNoteReferencedDocument(string deliveryNoteId, DateTime? deliveryNoteDate)
         {
-            this.DeliveryNoteReferencedDocument = new DeliveryNoteReferencedDocument()
+            this.DeliveryNoteReferencedDocument = new DeliveryNoteReferencedDocument
             {
                  ID = deliveryNoteId,
                  IssueDateTime = deliveryNoteDate
@@ -83,7 +82,7 @@ namespace s2industries.ZUGFeRD
 
         public void addAdditionalReferencedDocument(string id, DateTime? date = null, ReferenceTypeCodes code = ReferenceTypeCodes.Unknown)
         {
-            this.AdditionalReferencedDocuments.Add(new AdditionalReferencedDocument()
+            this.AdditionalReferencedDocuments.Add(new AdditionalReferencedDocument
             {
                 ID = id,
                 IssueDateTime = date,
@@ -94,7 +93,7 @@ namespace s2industries.ZUGFeRD
 
         public void setOrderReferencedDocument(string orderReferencedId, DateTime? orderReferencedDate)
         {
-            this.BuyerOrderReferencedDocument = new BuyerOrderReferencedDocument()
+            this.BuyerOrderReferencedDocument = new BuyerOrderReferencedDocument
             {
                 ID = orderReferencedId,
                 IssueDateTime = orderReferencedDate
@@ -104,7 +103,7 @@ namespace s2industries.ZUGFeRD
 
         public void setContractReferencedDocument(string contractReferencedId, DateTime? contractReferencedDate)
         {
-            this.ContractReferencedDocument = new ContractReferencedDocument()
+            this.ContractReferencedDocument = new ContractReferencedDocument
             {
                 ID = contractReferencedId,
                 IssueDateTime = contractReferencedDate
