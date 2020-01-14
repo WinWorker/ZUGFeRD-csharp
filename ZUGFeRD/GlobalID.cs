@@ -17,7 +17,6 @@
  * under the License.
  */
 
-// ReSharper disable InconsistentNaming
 namespace s2industries.ZUGFeRD
 {
     /// <summary>

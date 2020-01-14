@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace ZUGFeRD
 {
+    /// <summary>
+    /// Wird benutzt um verschiedene Versionen von ZUGFeRD auslesen zu können
+    /// Dabei werden nur die Bezeichnung der Tags und die Namespaces überschrieben
+    /// Die restliche Funktionalität des Auslesens bleibt gleich
+    /// </summary>
     internal abstract class ZugferdDialect
     {
         public abstract List<Tuple<string, string>> GetNamespaces();
@@ -35,7 +40,11 @@ namespace ZUGFeRD
 
         public abstract string SpecifiedTradeSettlementLineMonetarySummation { get; }
     }
-    
+
+    /// <summary>
+    /// ZUGFeRD Version 1.0
+    /// https://www.ferd-net.de/zugferd/zugferd-1.0/index.html
+    /// </summary>
     internal class Zugferd10Dialect : ZugferdDialect
     {
         public override List<Tuple<string, string>> GetNamespaces() => new List<Tuple<string, string>>
@@ -44,7 +53,6 @@ namespace ZUGFeRD
             new Tuple<string, string>( "ram", "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12"),
             new Tuple<string, string>( "udt", "urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
         };
-
 
         public override string DocumentId => "urn:ferd:CrossIndustryDocument:invoice:1p0:";
         public override string IndustryDocumentElement => "CrossIndustryDocument";
@@ -62,6 +70,10 @@ namespace ZUGFeRD
         public override string SpecifiedTradeSettlementLineMonetarySummation => "SpecifiedTradeSettlementMonetarySummation";
     }
 
+    /// <summary>
+    /// Weiterentwicklung von ZUGFeRD Version 1.0
+    /// https://www.ferd-net.de/zugferd/zugferd-2.0.1/index.html
+    /// </summary>
     internal class Zugferd20Dialect : ZugferdDialect
     {
         public override List<Tuple<string, string>> GetNamespaces() => new List<Tuple<string, string>>
@@ -70,6 +82,7 @@ namespace ZUGFeRD
             new Tuple<string, string>( "ram", "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"),
             new Tuple<string, string>( "udt", "urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100")
         };
+
         public override string DocumentId => "urn:cen.eu:en16931:2017#compliant#urn:zugferd.de:2p0:";
         public override string IndustryDocumentElement => "CrossIndustryInvoice";
         public override string ExchangedDocumentContext => "ExchangedDocumentContext";
@@ -86,28 +99,29 @@ namespace ZUGFeRD
         public override string SpecifiedTradeSettlementLineMonetarySummation => "SpecifiedTradeSettlementLineMonetarySummation";
     }
 
-    internal class XRechnungDialect : ZugferdDialect
+    /// <summary>
+    /// Der Deutsche Standard für "Elektronische Rechnungen an Bund, Länder & Gemeinden"
+    /// https://www.verband-e-rechnung.org/xrechnung/
+    /// </summary>
+    internal class XRechnungDialect : Zugferd20Dialect
+    {
+        public override string DocumentId => "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung";
+    }
+
+    /// <summary>
+    /// Der Französische Standard für Rechnung (in zusammenarbeit mit ZUGFeRD entsanden)
+    /// http://fnfe-mpe.org/factur-x/
+    /// </summary>
+    internal class FacturXDialect : Zugferd20Dialect
     {
         public override List<Tuple<string, string>> GetNamespaces() => new List<Tuple<string, string>>
         {
+            new Tuple<string, string>("qdt","urn:un:unece:uncefact:data:standard:QualifiedDataType:100"),
             new Tuple<string, string>("rsm", "urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"),
             new Tuple<string, string>( "ram", "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"),
             new Tuple<string, string>( "udt", "urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100")
         };
 
-        public override string DocumentId => "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2";
-        public override string IndustryDocumentElement => "CrossIndustryInvoice";
-        public override string ExchangedDocumentContext => "ExchangedDocumentContext";
-        public override string ExchangedDocument => "ExchangedDocumentContext";
-        public override string SupplyChainTradeTransaction => "SupplyChainTradeTransaction";
-        public override string ApplicableTradeAgreement => "ApplicableHeaderTradeAgreement";
-        public override string ApplicableTradeDelivery => "ApplicableHeaderTradeDelivery";
-        public override string ApplicableTradeSettlement => "ApplicableHeaderTradeSettlement";
-        public override string ApplicablePercent => "RateApplicablePercent";
-        public override string SpecifiedTradeSettlementMonetarySummation => "SpecifiedTradeSettlementHeaderMonetarySummation";
-        public override string SpecifiedLineTradeAgreement => "SpecifiedLineTradeAgreement";
-        public override string SpecifiedLineTradeDelivery => "SpecifiedLineTradeDelivery";
-        public override string SpecifiedLineTradeSettlement => "SpecifiedLineTradeSettlement";
-        public override string SpecifiedTradeSettlementLineMonetarySummation => "SpecifiedTradeSettlementLineMonetarySummation";
+        public override string DocumentId => "urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:";
     }
 }

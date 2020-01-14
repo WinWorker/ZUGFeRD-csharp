@@ -61,6 +61,32 @@ namespace ZUGFeRD.Tests.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;
+        ///&lt;rsm:CrossIndustryInvoice xmlns:qdt=&quot;urn:un:unece:uncefact:data:standard:QualifiedDataType:100&quot; xmlns:ram=&quot;urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100&quot; xmlns:rsm=&quot;urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100&quot; xmlns:udt=&quot;urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+        ///  &lt;rsm:ExchangedDocumentContext&gt;
+        ///    &lt;ram:GuidelineSpecifiedDocumentContextParamet [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string factur_x {
+            get {
+                return ResourceManager.GetString("factur_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;rsm:CrossIndustryInvoice xmlns:rsm=&quot;urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100&quot;
+        ///                          xmlns:ram=&quot;urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100&quot;
+        ///                          xmlns:udt=&quot;urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100&quot;
+        ///                          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        ///                          xsi:schemaLocation=&quot;urn:un:unece:uncefact:data:st [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string XRechnung {
+            get {
+                return ResourceManager.GetString("XRechnung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; ?&gt;
         ///
         ///&lt;!--Nutzungsrechte 

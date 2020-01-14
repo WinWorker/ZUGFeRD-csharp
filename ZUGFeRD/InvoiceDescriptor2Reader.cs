@@ -48,4 +48,17 @@ namespace s2industries.ZUGFeRD
             return base.IsReadableByThisReaderVersion(stream, new XRechnungDialect());
         }
     }
+
+    internal class InvoiceDescriptorFacturXReader : InvoiceDescriptorReader
+    {
+        public override InvoiceDescriptor Load(Stream stream)
+        {
+            return base.Load(stream, new FacturXDialect());
+        }
+
+        public override bool IsReadableByThisReaderVersion(Stream stream)
+        {
+            return base.IsReadableByThisReaderVersion(stream, new FacturXDialect());
+        }
+    }
 }

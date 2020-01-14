@@ -1,7 +1,5 @@
 ﻿using System;
 
-// ReSharper disable InconsistentNaming
-
 namespace s2industries.ZUGFeRD
 {
     public enum ContentCodes

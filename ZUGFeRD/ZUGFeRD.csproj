@@ -23,68 +23,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>C:\WinWorker\WWSystem\DLLs\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>C:\WinWorker\WWSystem\DLLs\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\net45\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\netcoreapp1.0\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\uap10.0\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\cs\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\de\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\es\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\fr\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\it\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\ja\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\ko\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\pl\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\pt\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\ru\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\tr\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\zh-Hans\" />
-    <Folder Include="packages\MSTest.TestAdapter.1.3.2\build\_common\zh-Hant\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\cs\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\de\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\es\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\fr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\it\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\ja\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\ko\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\pl\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\pt\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\ru\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\tr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\zh-Hans\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\net45\zh-Hant\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\cs\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\de\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\es\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\fr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\it\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\ja\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\ko\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\pl\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\pt\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\ru\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\tr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\zh-Hans\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\netstandard1.0\zh-Hant\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\cs\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\de\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\es\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\fr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\it\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\ja\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\ko\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\pl\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\pt\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\ru\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\tr\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\zh-Hans\" />
-    <Folder Include="packages\MSTest.TestFramework.1.3.2\lib\uap10.0\zh-Hant\" />
+    <Compile Remove="packages\**" />
+    <EmbeddedResource Remove="packages\**" />
+    <None Remove="packages\**" />
   </ItemGroup>
 </Project>

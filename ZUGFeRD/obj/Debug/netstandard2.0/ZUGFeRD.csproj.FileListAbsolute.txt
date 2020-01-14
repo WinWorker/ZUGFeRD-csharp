@@ -22,3 +22,14 @@ M:\Github\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\ZUGFeRD.AssemblyInfoIn
 M:\Github\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\ZUGFeRD.AssemblyInfo.cs
 M:\Github\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\s2industries.ZUGFeRD.dll
 M:\Github\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\s2industries.ZUGFeRD.pdb
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.deps.json
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.dll
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.pdb
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\ZUGFeRD.AssemblyInfoInputs.cache
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\ZUGFeRD.AssemblyInfo.cs
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\s2industries.ZUGFeRD.dll
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\s2industries.ZUGFeRD.pdb
+B:\DP\ZUGFeRD-csharp\ZUGFeRD\obj\Debug\netstandard2.0\ZUGFeRD.csprojAssemblyReference.cache
+M:\Github\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.deps.json
+M:\Github\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.dll
+M:\Github\ZUGFeRD-csharp\ZUGFeRD\bin\Debug\netstandard2.0\s2industries.ZUGFeRD.pdb

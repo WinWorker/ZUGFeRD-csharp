@@ -141,6 +141,12 @@ namespace s2industries.ZUGFeRD
                 return reader.Load(stream);
             }
 
+            reader = new InvoiceDescriptorFacturXReader();
+            if (reader.IsReadableByThisReaderVersion(stream))
+            {
+                return reader.Load(stream);
+            }
+
             return null;
         }
 
@@ -162,6 +168,12 @@ namespace s2industries.ZUGFeRD
             }
 
             reader = new InvoiceDescriptorXRechnungReader();
+            if (reader.IsReadableByThisReaderVersion(filename))
+            {
+                return reader.Load(filename);
+            }
+
+            reader = new InvoiceDescriptorFacturXReader();
             if (reader.IsReadableByThisReaderVersion(filename))
             {
                 return reader.Load(filename);
