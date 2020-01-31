@@ -1,13 +1,11 @@
-Now part of the ZUGFeRD community:
-https://github.com/zugferd
-
+# ZUGFeRD
+Now part of the [ZUGFeRD community](https://github.com/zugferd)!  
 
 The ZUGFeRD library allows to create XML files as required by German electronic invoice initiative ZUGFeRD.
-
-The library is meant to be as simple as possible, however it is not straight forward to use as the resulting XML file contains a complete invoice in XML format. Please take a look at the ZUGFeRD-Test project to find sample creation code. This code creates the same XML file as shipped with the ZUGFeRD information package.
-
-The code used here is:
-
+## Ease of use
+The library is meant to be as simple as possible, however it is not straight forward to use as the resulting XML file contains a complete invoice in XML format. Please take a look at the ZUGFeRD-Test project to find sample creation code. This code creates the same XML file as shipped with the ZUGFeRD information package.  
+The code used here is:  
+```
 InvoiceDescriptor desc = InvoiceDescriptor.CreateInvoice("471102", new DateTime(2013, 6, 5), CurrencyCodes.EUR, "GE2020211-471102");
 desc.Profile = Profile.Comfort;
 desc.ReferenceOrderNo = "AB-312";
@@ -29,13 +27,15 @@ desc.SetLogisticsServiceCharge(5.80m, "Versandkosten", "VAT", "S", 7m);
 desc.setTradePaymentTerms("Zahlbar innerhalb 30 Tagen netto bis 04.07.2013, 3% Skonto innerhalb 10 Tagen bis 15.06.2013", new DateTime(2013, 07, 04));
 
 desc.Save("output.xml");
-
-A description of the library can be found here:
-http://www.s2-industries.com/wordpress/2013/11/creating-zugferd-descriptors-with-c/
-
-The solution is used in CKS.DMS and supported by CKSolution:
-http://www.cksolution.de
-
-You can find more information about ZUGFeRD here:
-http://www.ferd-net.de/
-
+```
+## Compatibility
+||ZUGFeRD V 1.0|ZUGFeRD V 2.0|X-Rechnung|Factur-X|
+|---|---|---|---|---|
+|Documentation|[Documentation](https://www.ferd-net.de/zugferd/zugferd-1.0/index.html)|[Documentation](https://www.ferd-net.de/zugferd/zugferd-2.0.1/index.html)|[Documentation](https://www.verband-e-rechnung.org/xrechnung/)|[Documentation](https://www.ferd-net.de/upload/Dokumente/FACTUR-X_ZUGFeRD_2p0_Teil1_Profil_EN16931_1p03.pdf)|
+|Unit-Tests (reading)|✔|✔|✔|✔|
+|Reading|✔|✔|✔|✔|
+|Writing|✔|✔|❌|❌|
+## More information
+* A description of the library can be found [here](http://www.s2-industries.com/wordpress/2013/11/creating-zugferd-descriptors-with-c/)
+* The solution is used in CKS.DMS and supported by [CKSolution](http://www.cksolution.de)
+* You can find more information about ZUGFeRD at [FeRD](http://www.ferd-net.de/)
